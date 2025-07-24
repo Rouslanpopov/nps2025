@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-black text-white overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .video-background {
+    @apply absolute inset-0 w-full h-full object-cover;
+    filter: contrast(1.1) saturate(1);
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .animate-cursor-slide {
+    animation: cursorSlide 4s ease-out forwards;
+    right: 18%; 
+  }
+
+  .animate-cursor-slide .cursor-stem {
+    animation: cursorStemColorMobile 4s ease-out forwards;
+  }
+
+  @media (min-width: 640px) {
+    .animate-cursor-slide {
+      animation: cursorSlideDesktop 4s ease-out forwards;
+      right: 22%;
+    }
+    
+    .animate-cursor-slide .cursor-stem {
+      animation: cursorStemColorDesktop 4s ease-out forwards;
+    }
+  }
+}
+
+@keyframes cursorSlide {
+  from {
+    right: 95%;
+  }
+  to {
+    right: 18%;
+  }
+}
+
+@keyframes cursorSlideDesktop {
+  from {
+    right: 95%;
+  }
+  to {
+    right: 22%;
+  }
+}
+
+@keyframes cursorStemColorMobile {
+  0% {
+    background-color: #F2723E;
+  }
+  40% {
+    background-color: #EE4E4D;
+  }
+  75% {
+    background-color: #934CD6;
+  }
+  90% {
+    background-color: #0DAE33;
+  }
+  100% {
+    background-color: #0DAE33;
+  }
+}
+
+@keyframes cursorStemColorDesktop {
+  0% {
+    background-color: #F2723E;
+  }
+  40% {
+    background-color: #EE4E4D;
+  }
+  75% {
+    background-color: #934CD6;
+  }
+  90% {
+    background-color: #0DAE33;
+  }
+  100% {
+    background-color: #0DAE33;
+  }
+} 
