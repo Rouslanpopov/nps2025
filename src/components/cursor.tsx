@@ -16,7 +16,6 @@ export default function Cursor({
       className={`cursor-container ${className}`}
       style={{ width: `${width}px`, height: `${height}px` }}
     >
-      {/* Tige verticale du curseur */}
       <div 
         className="cursor-stem"
         style={{
@@ -30,7 +29,6 @@ export default function Cursor({
         }}
       />
       
-      {/* Cercle du curseur */} 
       <div 
         className="cursor-circle"
         style={{

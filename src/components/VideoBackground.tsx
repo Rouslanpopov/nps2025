@@ -47,7 +47,6 @@ const VideoBackground = forwardRef<VideoBackgroundRef, VideoBackgroundProps>(({
       setHasError(true);
     };
 
-    // Configuration audio si disponible
     if (audio && audioSrc) {
       audio.volume = volume;
       audio.loop = true;
@@ -99,7 +98,6 @@ const VideoBackground = forwardRef<VideoBackgroundRef, VideoBackgroundProps>(({
     toggleAudio();
   };
 
-  // Exposer les méthodes via ref
   useImperativeHandle(ref, () => ({
     toggleAudio: handleAudioToggle,
     isAudioEnabled: () => audioEnabled
