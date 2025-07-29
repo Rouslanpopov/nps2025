@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:custom-domain": "CUSTOM_DOMAIN=true NEXT_PUBLIC_CUSTOM_DOMAIN=true next build",
+    "build:github": "next build",
     "start": "next start",
     "lint": "next lint"
   },

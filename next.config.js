@@ -5,8 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/nps2025' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/nps2025/' : '',
+  // Utiliser le domaine personnalisé si CUSTOM_DOMAIN est défini
+  basePath: process.env.CUSTOM_DOMAIN ? '' : (process.env.NODE_ENV === 'production' ? '/nps2025' : ''),
+  assetPrefix: process.env.CUSTOM_DOMAIN ? '' : (process.env.NODE_ENV === 'production' ? '/nps2025/' : ''),
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(mp4|webm|ogg|swf|ogv)$/,

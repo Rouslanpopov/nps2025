@@ -8,7 +8,15 @@ export default function Home() {
   const videoRef = useRef<VideoBackgroundRef>(null);
   const [audioEnabled, setAudioEnabled] = useState(false);
   
-  const audioSrc = process.env.NODE_ENV === 'production' ? '/nps2025/audio/background.mp3' : '/audio/background.mp3';
+  // Support pour domaine personnalisé
+  const getAssetPath = (path: string) => {
+    if (process.env.NEXT_PUBLIC_CUSTOM_DOMAIN) {
+      return path; // Pas de préfixe pour domaine personnalisé
+    }
+    return process.env.NODE_ENV === 'production' ? `/nps2025${path}` : path;
+  };
+
+  const audioSrc = getAssetPath('/audio/background.mp3');
 
   const handleAudioToggle = () => {
     videoRef.current?.toggleAudio();
@@ -18,7 +26,7 @@ export default function Home() {
     <main className="relative min-h-screen">
       <VideoBackground
         ref={videoRef}
-        src={process.env.NODE_ENV === 'production' ? '/nps2025/videos/background.mp4' : '/videos/background.mp4'}
+        src={getAssetPath('/videos/background.mp4')}
         audioSrc={audioSrc}
         volume={0.5}
         overlay={true}
