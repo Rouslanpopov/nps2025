@@ -8,12 +8,17 @@ export default function Home() {
   const videoRef = useRef<VideoBackgroundRef>(null);
   const [audioEnabled, setAudioEnabled] = useState(false);
   
-  // Support pour domaine personnalisé
   const getAssetPath = (path: string) => {
-    if (process.env.NEXT_PUBLIC_CUSTOM_DOMAIN) {
-      return path; // Pas de préfixe pour domaine personnalisé
+    if (process.env.NODE_ENV !== 'production') {
+      return path;
     }
-    return process.env.NODE_ENV === 'production' ? `/nps2025${path}` : path;
+    
+    if (typeof window !== 'undefined') {
+      const isGitHubPages = window.location.hostname.includes('github.io');
+      return isGitHubPages ? `/nps2025${path}` : path;
+    }
+    
+    return path;
   };
 
   const audioSrc = getAssetPath('/audio/background.mp3');

@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
@@ -5,9 +8,28 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  // Utiliser le domaine personnalisé si CUSTOM_DOMAIN est défini
-  basePath: process.env.CUSTOM_DOMAIN ? '' : (process.env.NODE_ENV === 'production' ? '/nps2025' : ''),
-  assetPrefix: process.env.CUSTOM_DOMAIN ? '' : (process.env.NODE_ENV === 'production' ? '/nps2025/' : ''),
+  basePath: (() => {
+    const cnamePath = path.join(__dirname, 'public', 'CNAME');
+    const hasCustomDomain = fs.existsSync(cnamePath);
+    
+    if (hasCustomDomain || process.env.CUSTOM_DOMAIN) {
+      return ''; 
+    }
+    
+    return process.env.NODE_ENV === 'production' ? '/nps2025' : '';
+  })(),
+  
+  assetPrefix: (() => {
+    const cnamePath = path.join(__dirname, 'public', 'CNAME');
+    const hasCustomDomain = fs.existsSync(cnamePath);
+    
+    if (hasCustomDomain || process.env.CUSTOM_DOMAIN) {
+      return '';
+    }
+    
+    return process.env.NODE_ENV === 'production' ? '/nps2025/' : '';
+  })(),
+  
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(mp4|webm|ogg|swf|ogv)$/,
