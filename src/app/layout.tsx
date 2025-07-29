@@ -37,11 +37,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: baseUrl,
   },
-  icons: {
-    icon: `${basePath}/favicon.svg`,
-    shortcut: `${basePath}/favicon.svg`,
-    apple: `${basePath}/favicon.svg`,
-  },
   openGraph: {
     title: 'NPS 2025 Memory - Score d\'engagement',
     description: 'Notre NPS reflète l\'impact de nos équipes. Interface moderne avec effets de verre liquide pour visualiser l\'engagement des collaborateurs.',
